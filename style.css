@@ -28,6 +28,12 @@ a{color:inherit}
 .btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;font-weight:600;padding:.85em 1.6em;border-radius:999px;transition:transform .2s,background .2s}
 .btn:hover{background:#a9512f;transform:translateY(-1px)}
 .btn-small{padding:.5em 1.1em;font-size:.9rem}
+.btn-outline{background:transparent;color:var(--terra);border:2px solid var(--terra);margin-top:.6em}
+.btn-outline:hover{background:var(--terra);color:#fff}
+.topnav{display:flex;align-items:center;gap:12px}
+.lang{font-weight:600;font-size:.85rem;letter-spacing:.06em;text-decoration:none;border:1.5px solid currentColor;border-radius:999px;padding:.32em .75em;opacity:.9}
+.lang:hover{opacity:1}
+.footer p a{color:inherit}
 .btn-wa{background:#1f9d55}
 .btn-wa:hover{background:#18834a}
 .btn .todo{margin-left:.4em}

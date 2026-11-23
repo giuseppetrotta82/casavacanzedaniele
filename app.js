@@ -1,6 +1,9 @@
 /* Casa Vacanze Daniele - scroll scrubbing + mappa animata */
 (() => {
   'use strict';
+  const BASE = new URL('.', document.currentScript.src).href;
+  const EN = document.documentElement.lang === 'en';
+  const T = (it, en) => (EN ? en : it);
 
   // ---------- fotogrammi ----------
   const FRAMES = [];
@@ -9,7 +12,7 @@
   FRAMES.push(144);
 
   const set = (innerWidth / innerHeight) < 1 ? 'm' : 'd';
-  const src = i => `frames/${set}/${String(i).padStart(3, '0')}.webp`;
+  const src = i => `${BASE}frames/${set}/${String(i).padStart(3, '0')}.webp`;
   // punto dell'aereo nel primo fotogramma (coordinate normalizzate)
   const PLANE = set === 'd' ? { x: 0.48, y: 0.37 } : { x: 0.45, y: 0.37 };
 
@@ -184,7 +187,7 @@
   };
 
   el('polygon', { points: land, class: 'land' });
-  el('text', { x: W * 0.36, y: H * 0.52, class: 'sea-lbl', 'text-anchor': 'middle' }, svg, 'Golfo di Salerno');
+  el('text', { x: W * 0.36, y: H * 0.52, class: 'sea-lbl', 'text-anchor': 'middle' }, svg, T('Golfo di Salerno', 'Gulf of Salerno'));
 
   const defs = el('defs', {});
   const routeEls = routes.map((r, i) => {
@@ -211,9 +214,9 @@
     if (t2) el('text', { x, y: y + 14, 'text-anchor': a, class: 'lbl-t' }, svg, t2);
   };
   el('text', { x: cx + 12, y: cy - 8, class: 'lbl-home' }, svg, 'Casa Daniele');
-  label(+pts.aero[0] + 10, +pts.aero[1] + 4, 'start', 'Aeroporto', '10 min');
+  label(+pts.aero[0] + 10, +pts.aero[1] + 4, 'start', T('Aeroporto', 'Airport'), '10 min');
   label(+pts.salerno[0], +pts.salerno[1] - 22, 'middle', 'Salerno', '20 min');
-  label(+pts.amalfi[0], +pts.amalfi[1] - 26, 'middle', 'Amalfi', 'traghetto');
+  label(+pts.amalfi[0], +pts.amalfi[1] - 26, 'middle', 'Amalfi', T('traghetto', 'ferry'));
   label(+pts.paestum[0] - 10, +pts.paestum[1] + 4, 'end', 'Paestum', '40 min');
 
   const mapSec = document.getElementById('posizione');
@@ -234,34 +237,34 @@
 
   // ---------- galleria ----------
   const PHOTOS = [
-    ['01-terrazza', 'La terrazza con dondolo e zona pranzo'],
-    ['02-soggiorno-terrazza', 'Il soggiorno si apre sulla terrazza'],
-    ['06-cucina', 'Cucina attrezzata con forno'],
-    ['08-camera-matrimoniale', 'Camera matrimoniale'],
-    ['12-bagno-vasca', 'Bagno con vasca idromassaggio'],
-    ['10-cameretta', 'Cameretta con letto estraibile'],
-    ['03-soggiorno', 'Soggiorno luminoso'],
-    ['07-colazione', 'Pronti per la colazione'],
-    ['04-divano', 'Angolo relax'],
-    ['05-tv', 'Smart TV'],
-    ['09-camera', 'Camera da letto'],
-    ['11-cameretta-2', 'Cameretta'],
-    ['13-bagno-doccia', 'Bagno con doccia e lavatrice'],
-    ['14-cortesia', 'Set di cortesia e asciugacapelli'],
-    ['15-dondolo', 'Il dondolo in terrazza'],
-    ['16-vista', 'Vista dal balcone']
-  ];
+    ['01-terrazza', 'La terrazza con dondolo e zona pranzo', 'The terrace with swing seat and dining area'],
+    ['02-soggiorno-terrazza', 'Il soggiorno si apre sulla terrazza', 'The living room opens onto the terrace'],
+    ['06-cucina', 'Cucina attrezzata con forno', 'Fully equipped kitchen with oven'],
+    ['08-camera-matrimoniale', 'Camera matrimoniale', 'Double bedroom'],
+    ['12-bagno-vasca', 'Bagno con vasca idromassaggio', 'Bathroom with whirlpool bath'],
+    ['10-cameretta', 'Cameretta con letto estraibile', 'Second bedroom with pull-out bed'],
+    ['03-soggiorno', 'Soggiorno luminoso', 'Bright living room'],
+    ['07-colazione', 'Pronti per la colazione', 'Ready for breakfast'],
+    ['04-divano', 'Angolo relax', 'Relaxing corner'],
+    ['05-tv', 'Smart TV', 'Smart TV'],
+    ['09-camera', 'Camera da letto', 'Bedroom'],
+    ['11-cameretta-2', 'Cameretta', 'Second bedroom'],
+    ['13-bagno-doccia', 'Bagno con doccia e lavatrice', 'Bathroom with shower and washing machine'],
+    ['14-cortesia', 'Set di cortesia e asciugacapelli', 'Toiletries and hairdryer'],
+    ['15-dondolo', 'Il dondolo in terrazza', 'The swing seat on the terrace'],
+    ['16-vista', 'Vista dal balcone', 'View from the balcony']
+  ].map(([f, it, en]) => [f, T(it, en)]);
   const SHOWN = 8;
   const grid = document.getElementById('galleria-grid');
   PHOTOS.slice(0, SHOWN).forEach(([f, cap], i) => {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'g-item' + (i === 0 ? ' g-big' : '');
-    b.setAttribute('aria-label', `Apri foto: ${cap}`);
-    b.innerHTML = `<img src="img/galleria/${f}-t.webp" alt="${cap}" loading="lazy" width="450" height="600"><span>${cap}</span>`;
+    b.setAttribute('aria-label', `${T('Apri foto', 'Open photo')}: ${cap}`);
+    b.innerHTML = `<img src="${BASE}img/galleria/${f}-t.webp" alt="${cap}" loading="lazy" width="450" height="600"><span>${cap}</span>`;
     if (i === SHOWN - 1 && PHOTOS.length > SHOWN) {
       b.classList.add('g-more');
-      b.insertAdjacentHTML('beforeend', `<em>+${PHOTOS.length - SHOWN} foto</em>`);
+      b.insertAdjacentHTML('beforeend', `<em>+${PHOTOS.length - SHOWN} ${T('foto', 'photos')}</em>`);
     }
     b.addEventListener('click', () => openLb(i));
     grid.appendChild(b);
@@ -274,10 +277,10 @@
   function showLb(i) {
     cur = (i + PHOTOS.length) % PHOTOS.length;
     const [f, cap] = PHOTOS[cur];
-    lbImg.src = `img/galleria/${f}.webp`;
+    lbImg.src = `${BASE}img/galleria/${f}.webp`;
     lbImg.alt = cap;
     lbCap.textContent = `${cap} · ${cur + 1}/${PHOTOS.length}`;
-    const nx = new Image(); nx.src = `img/galleria/${PHOTOS[(cur + 1) % PHOTOS.length][0]}.webp`;
+    const nx = new Image(); nx.src = `${BASE}img/galleria/${PHOTOS[(cur + 1) % PHOTOS.length][0]}.webp`;
   }
   function openLb(i) { showLb(i); lb.showModal(); }
   lb.querySelector('.lb-close').onclick = () => lb.close();
