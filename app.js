@@ -75,8 +75,10 @@
   const seg = (p, a, b) => clamp((p - a) / (b - a));
 
   // linea temporale dello scorrimento
-  const S1 = [0, 0.22], S2 = [0.22, 0.48], S3 = [0.48, 0.56],
-        S4 = [0.56, 0.80], S5 = [0.80, 0.90], S6 = [0.90, 1];
+  // TS comprime le scene precedenti: lo spazio liberato allunga la sosta finale sulla casa
+  const TS = 720 / 850;
+  const S1 = [0, 0.22 * TS], S2 = [0.22 * TS, 0.48 * TS], S3 = [0.48 * TS, 0.56 * TS],
+        S4 = [0.56 * TS, 0.80 * TS], S5 = [0.80 * TS, 0.90 * TS], S6 = [0.90 * TS, 1];
 
   let progress = 0, lastFrame = -1;
   function needsRedraw(f) { return Math.abs(f - lastFrame) < 6; }
@@ -122,8 +124,9 @@
 
     // didascalie
     caps.forEach(c => {
-      const a = +c.dataset.in, b = +c.dataset.out, fade = 0.025;
-      const o = clamp(Math.min(a === 0 ? 1 : (p - a) / fade, (b - p) / fade));
+      const a = +c.dataset.in * TS, b = Math.min(+c.dataset.out * TS, 1.01), fade = 0.025;
+      const bEnd = c.classList.contains('cap-end') ? 1.01 : b;
+      const o = clamp(Math.min(a === 0 ? 1 : (p - a) / fade, (bEnd - p) / fade));
       c.style.opacity = o;
       const y = (1 - o) * 24;
       if (c.classList.contains('cap-hero')) c.style.transform = `translate(-50%, ${-(1 - o) * 30}px)`;
