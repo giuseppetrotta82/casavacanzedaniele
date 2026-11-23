@@ -302,6 +302,64 @@
     if (Math.abs(dx) > 50) showLb(cur + (dx < 0 ? 1 : -1));
   });
 
+  // ---------- modulo date -> WhatsApp ----------
+  const form = document.getElementById('richiesta');
+  if (form) {
+    const fArr = form.arrivo, fDep = form.partenza, info = form.querySelector('.r-info');
+    const pad = n => String(n).padStart(2, '0');
+    const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const parse = v => { const [y, m, d] = v.split('-').map(Number); return new Date(y, m - 1, d); };
+    const fmt = d => d.toLocaleDateString(EN ? 'en-GB' : 'it-IT', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+    const nightsBetween = (a, b) => Math.round((b - a) / 86400000);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    fArr.min = iso(today);
+    const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+    fDep.min = iso(tomorrow);
+
+    function update() {
+      info.classList.remove('err');
+      [fArr, fDep].forEach(i => i.removeAttribute('aria-invalid'));
+      if (fArr.value) {
+        const next = parse(fArr.value); next.setDate(next.getDate() + 1);
+        fDep.min = iso(next);
+        if (fDep.value && parse(fDep.value) <= parse(fArr.value)) fDep.value = '';
+      }
+      if (fArr.value && fDep.value) {
+        const n = nightsBetween(parse(fArr.value), parse(fDep.value));
+        info.textContent = EN ? `${n} night${n > 1 ? 's' : ''}` : `${n} nott${n > 1 ? 'i' : 'e'}`;
+      } else info.textContent = '';
+    }
+    fArr.addEventListener('change', () => { update(); if (fArr.value && !fDep.value) fDep.focus(); });
+    fDep.addEventListener('change', update);
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const missing = [fArr, fDep].filter(i => !i.value);
+      if (missing.length) {
+        missing.forEach(i => i.setAttribute('aria-invalid', 'true'));
+        info.classList.add('err');
+        info.textContent = T('Scegli la data di arrivo e di partenza.', 'Please choose check-in and check-out dates.');
+        missing[0].focus();
+        return;
+      }
+      const a = parse(fArr.value), d = parse(fDep.value), n = nightsBetween(a, d);
+      const guests = form.ospiti.value, note = form.note.value.trim();
+      const lines = EN ? [
+        "Hi! I'd like to check availability at Casa Vacanze Daniele:",
+        `📅 Check-in: ${fmt(a)}`,
+        `📅 Check-out: ${fmt(d)} (${n} night${n > 1 ? 's' : ''})`,
+        `👥 Guests: ${guests}`
+      ] : [
+        'Ciao! Vorrei verificare la disponibilità di Casa Vacanze Daniele:',
+        `📅 Arrivo: ${fmt(a)}`,
+        `📅 Partenza: ${fmt(d)} (${n} nott${n > 1 ? 'i' : 'e'})`,
+        `👥 Ospiti: ${guests}`
+      ];
+      if (note) lines.push(`📝 ${T('Note', 'Notes')}: ${note}`);
+      window.open(`https://wa.me/393403619077?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+    });
+  }
+
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', () => { resize(); onScroll(); });
   resize();

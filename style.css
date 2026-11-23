@@ -134,6 +134,18 @@ a{color:inherit}
 .lb-close{top:14px;right:14px}
 .lb-prev{left:14px;top:50%;transform:translateY(-50%)}
 .lb-next{right:14px;top:50%;transform:translateY(-50%)}
+.richiesta{max-width:640px;margin:2em auto 0;text-align:left}
+.r-grid{display:grid;grid-template-columns:1fr 1fr .7fr;gap:12px}
+.richiesta label{display:flex;flex-direction:column;gap:6px;font-size:.85rem;font-weight:600;letter-spacing:.04em;color:#e9dcc6}
+.richiesta label small{font-weight:400;opacity:.75}
+.richiesta input,.richiesta select{font:inherit;font-size:1rem;font-weight:400;color:var(--ink);background:#fbf7f0;border:2px solid transparent;border-radius:12px;padding:.7em .8em;width:100%;min-height:50px}
+.richiesta input:focus,.richiesta select:focus{outline:none;border-color:var(--gold)}
+.richiesta input[aria-invalid="true"]{border-color:#e46a4b}
+.r-note{margin-top:12px}
+.r-info{min-height:1.4em;margin:.8em 0 0;text-align:center;font-size:.95rem;color:var(--gold)}
+.r-info.err{color:#ff9b82}
+.richiesta .cta-row{margin-top:.8em}
+.richiesta button{border:0;cursor:pointer;font:inherit;font-weight:600}
 .prenota .tel a{color:var(--gold);font-size:1.2rem;text-decoration:none;font-weight:600}
 
 /* ===== dintorni ===== */
@@ -174,6 +186,8 @@ a{color:inherit}
   .mappa-grid,.casa-grid{grid-template-columns:1fr;gap:32px}
   .mappa-svg-wrap{order:-1}
   .cards{grid-template-columns:1fr}
+  .r-grid{grid-template-columns:1fr 1fr}
+  .r-grid label:last-child{grid-column:1 / -1}
   .galleria{padding:72px 0 20px}
   .casa-foto img{aspect-ratio:4/3}
   .g-grid{grid-template-columns:1fr 1fr;gap:10px}
