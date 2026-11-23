@@ -147,7 +147,9 @@ a{color:inherit}
 /* ===== prenota ===== */
 .prenota{padding:110px 0;background:var(--sea-deep);color:#fff;text-align:center}
 .prenota p{opacity:.85}
-.cta-row{margin:1.8em 0}
+.cta-row{margin:1.8em 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn-booking{background:#003b95}
+.btn-booking:hover{background:#00296b}
 .social{display:flex;gap:28px;justify-content:center}
 .social a{opacity:.8}
 .footer{padding:40px 0 90px;font-size:.9rem;color:var(--ink-soft)}
