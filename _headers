@@ -1,0 +1,12 @@
+/frames/*
+  Cache-Control: public, max-age=2592000
+
+/img/*
+  Cache-Control: public, max-age=2592000
+
+/brand/*
+  Cache-Control: public, max-age=2592000
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
