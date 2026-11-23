@@ -151,7 +151,8 @@ a{color:inherit}
 .btn-booking{background:#003b95}
 .btn-booking:hover{background:#00296b}
 .social{display:flex;gap:28px;justify-content:center}
-.social a{opacity:.8}
+.social a{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;transition:background .2s,transform .2s}
+.social a:hover{background:var(--terra);transform:translateY(-2px)}
 .footer{padding:40px 0 90px;font-size:.9rem;color:var(--ink-soft)}
 .footer p{margin:.3em 0}
 .footer{text-align:center}
