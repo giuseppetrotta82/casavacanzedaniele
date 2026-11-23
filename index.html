@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Vacanze Daniele · Pontecagnano</title>
+<meta name="description" content="Casa vacanze a Pontecagnano (SA): a 10 minuti dall'Aeroporto Salerno Costa d'Amalfi, tra la Costiera Amalfitana e i Templi di Paestum.">
+<link rel="preload" as="image" href="frames/d/000.webp" media="(min-aspect-ratio: 1/1)">
+<link rel="preload" as="image" href="frames/m/000.webp" media="(max-aspect-ratio: 1/1)">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="brand/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Casa Vacanze Daniele, torna all'inizio">
+    <img class="logo-light" src="brand/logo-orizzontale-mono-bianco.svg" alt="" width="150" height="44">
+    <img class="logo-color" src="brand/logo-orizzontale-colore.svg" alt="" width="150" height="44">
+  </a>
+  <a class="btn btn-small" href="#prenota">Prenota</a>
+</header>
+
+<!-- ===== Volo a scorrimento ===== -->
+<section id="top" class="volo" aria-label="Il viaggio verso Casa Vacanze Daniele">
+  <div class="volo-sticky">
+    <canvas id="volo-canvas" aria-hidden="true"></canvas>
+    <div class="volo-shade"></div>
+
+    <div class="cap cap-hero" data-in="0" data-out="0.09">
+      <h1 class="hero-logo"><img src="brand/logo-verticale-negativo.svg" alt="Casa Vacanze Daniele" width="300" height="200"></h1>
+      <p class="eyebrow">Pontecagnano · Salerno</p>
+      <p class="lead">Tra la Costiera Amalfitana e i Templi di Paestum,<br>a pochi minuti dall'aeroporto.</p>
+      <p class="scroll-hint"><span></span>Scorri per partire</p>
+    </div>
+
+    <div class="cap cap-left" data-in="0.11" data-out="0.25">
+      <p class="eyebrow">✈ Si atterra qui</p>
+      <h2>Aeroporto Salerno<br>Costa d'Amalfi</h2>
+      <p class="stat"><strong>10</strong> minuti da casa <span>· 6 km</span></p>
+    </div>
+
+    <div class="cap cap-right" data-in="0.33" data-out="0.5">
+      <p class="eyebrow">Costiera Amalfitana</p>
+      <h2>Amalfi, Positano,<br>Ravello</h2>
+      <p class="stat"><strong>20</strong> minuti al porto di Salerno <span>· poi il traghetto</span></p>
+    </div>
+
+    <div class="cap cap-left" data-in="0.6" data-out="0.79">
+      <p class="eyebrow">Patrimonio UNESCO</p>
+      <h2>I Templi<br>di Paestum</h2>
+      <p class="stat"><strong>40</strong> minuti da casa <span>· 35 km</span></p>
+    </div>
+
+    <div class="cap cap-end" data-in="0.88" data-out="1.01">
+      <p class="eyebrow">Via Piave 88 · Parco Vittoria</p>
+      <h2>E poi, casa.</h2>
+      <a class="btn" href="#prenota">Verifica le date</a>
+    </div>
+
+    <div class="volo-progress"><span id="volo-bar"></span></div>
+  </div>
+</section>
+
+<!-- ===== Mappa ===== -->
+<section id="posizione" class="mappa">
+  <div class="wrap mappa-grid">
+    <div class="mappa-text">
+      <p class="eyebrow">La posizione</p>
+      <h2>Al centro di tutto</h2>
+      <p>Da Pontecagnano raggiungi in poco tempo tutto quello che hai sognato della Campania. E se arrivi in aereo, la vacanza comincia dieci minuti dopo l'atterraggio.</p>
+      <ul class="dist">
+        <li><span class="ico">✈</span><b>Aeroporto Salerno Costa d'Amalfi</b><i>10 min · 6 km</i></li>
+        <li><span class="ico">≈</span><b>Spiaggia di Pontecagnano</b><i>12 min · 7 km</i></li>
+        <li><span class="ico">⚓</span><b>Salerno, centro e porto</b><i>20 min · 18 km</i></li>
+        <li><span class="ico">◭</span><b>Templi di Paestum</b><i>40 min · 35 km</i></li>
+        <li><span class="ico">⛵</span><b>Amalfi</b><i>~1 h · o traghetto da Salerno</i></li>
+      </ul>
+      <p class="note">Tempi indicativi in auto, senza traffico.</p>
+    </div>
+    <div class="mappa-svg-wrap">
+      <svg id="mappa-svg" role="img" aria-label="Mappa schematica: la casa al centro tra aeroporto, Salerno, Costiera Amalfitana e Paestum"></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== La casa ===== -->
+<section id="casa" class="casa">
+  <div class="wrap casa-grid">
+    <figure class="casa-foto"><img src="img/galleria/02-soggiorno-terrazza.webp" alt="Il soggiorno che si apre sulla terrazza" loading="lazy" width="1050" height="1400"></figure>
+    <div>
+      <p class="eyebrow">La casa</p>
+      <h2>La tua base in Campania</h2>
+      <p>Un appartamento luminoso e curato nel Parco Vittoria: soggiorno che si apre su una grande terrazza con dondolo e tavolo da pranzo, cucina attrezzata, camere accoglienti e due bagni, uno con vasca idromassaggio.</p>
+      <div class="facts">
+        <div><strong class="todo">2</strong><span>camere</span></div>
+        <div><strong class="todo">[?]</strong><span>posti letto</span></div>
+        <div><strong class="todo">2</strong><span>bagni</span></div>
+      </div>
+      <ul class="servizi">
+        <li>Terrazza con dondolo</li>
+        <li>Cucina attrezzata con forno</li>
+        <li>Vasca idromassaggio</li>
+        <li>Smart TV</li>
+        <li>Lavatrice</li>
+        <li>Biancheria e set di cortesia</li>
+        <li class="todo">Wi‑Fi gratuito</li>
+        <li class="todo">Aria condizionata</li>
+        <li class="todo">Parcheggio</li>
+        <li class="todo">Check-in anche in tarda serata</li>
+      </ul>
+      <a class="btn galleria-open" href="#galleria">Guarda le foto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Galleria ===== -->
+<section id="galleria" class="galleria">
+  <div class="wrap">
+    <p class="eyebrow">Le foto</p>
+    <h2>Entra e guardati intorno</h2>
+    <div id="galleria-grid" class="g-grid"></div>
+  </div>
+</section>
+
+<dialog id="lightbox" class="lb" aria-label="Galleria foto">
+  <button class="lb-close" type="button" aria-label="Chiudi">×</button>
+  <button class="lb-prev" type="button" aria-label="Foto precedente">‹</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button class="lb-next" type="button" aria-label="Foto successiva">›</button>
+</dialog>
+
+<!-- ===== Dintorni ===== -->
+<section id="dintorni" class="dintorni">
+  <div class="wrap">
+    <p class="eyebrow">Cosa vedere</p>
+    <h2>Tre mete, una sola casa</h2>
+    <div class="cards">
+      <article class="card"><img src="img/amalfi.webp" alt="" loading="lazy"><div><h3>Costiera Amalfitana</h3><p>Dal porto di Salerno partono i traghetti per Amalfi e Positano: niente traffico, solo mare.</p></div></article>
+      <article class="card"><img src="img/paestum.webp" alt="" loading="lazy"><div><h3>Paestum e il Cilento</h3><p>I templi greci meglio conservati d'Italia, la mozzarella di bufala e le spiagge del Cilento.</p></div></article>
+      <article class="card"><img src="img/salerno.webp" alt="" loading="lazy"><div><h3>Salerno</h3><p>Il lungomare, il centro storico e la movida, a venti minuti da casa.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Prenota ===== -->
+<section id="prenota" class="prenota">
+  <div class="wrap">
+    <h2>Prenota la tua vacanza</h2>
+    <p>Scrivici le date: ti rispondiamo con disponibilità e prezzo.</p>
+    <p class="tel"><a href="tel:+393403619077">+39 340 361 9077</a></p>
+    <div class="cta-row">
+      <a class="btn btn-wa" href="https://wa.me/393403619077?text=Ciao!%20Vorrei%20informazioni%20su%20Casa%20Vacanze%20Daniele%20per%20queste%20date%3A%20" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/casa.vacanze.daniele.88" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/share/1AMpjpH5wC/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <img class="footer-logo" src="brand/logo-verticale-colore.svg" alt="Casa Vacanze Daniele" width="150" height="100" loading="lazy">
+    <p><b>Casa Vacanze Daniele</b> · Via Piave 88, Parco Vittoria · 84098 Pontecagnano Faiano (SA)</p>
+    <p>CIN: IT065099C2S8SH59P9 · CURS: 15065099LOB3JWH</p>
+    <p class="small">Le immagini del video introduttivo e dei dintorni sono generate con intelligenza artificiale a scopo illustrativo.</p>
+    <p class="credit">Sviluppo web · <a href="https://giuseppetrotta82.github.io/" target="_blank" rel="noopener">Powered by <b>GT</b></a></p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/393403619077?text=Ciao!%20Vorrei%20informazioni%20su%20Casa%20Vacanze%20Daniele%20per%20queste%20date%3A%20" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.5 4.9 2 .9 2.8 1 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.7-.5z"/></svg>
+</a>
+
+<script src="app.js"></script>
+</body>
+</html>
