@@ -96,7 +96,8 @@ a{color:inherit}
 /* ===== casa ===== */
 .casa{padding:100px 0;background:var(--sand-2)}
 .casa-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
-.casa-foto img{border-radius:18px;box-shadow:0 24px 60px -30px rgba(31,42,51,.5);aspect-ratio:3/4;object-fit:cover;width:100%}
+.casa-foto{max-width:420px;margin:0 auto}
+.casa-foto img{border-radius:18px;box-shadow:0 24px 60px -30px rgba(31,42,51,.5);aspect-ratio:1/1;object-fit:cover;object-position:50% 85%;width:100%;height:auto}
 .facts{display:flex;gap:34px;margin:1.6em 0}
 .facts strong{display:block;font-family:var(--serif);font-size:2.2rem;font-weight:500;line-height:1}
 .facts span{font-size:.85rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.1em}
