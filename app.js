@@ -238,7 +238,7 @@
     ['02-soggiorno-terrazza', 'Il soggiorno si apre sulla terrazza'],
     ['06-cucina', 'Cucina attrezzata con forno'],
     ['08-camera-matrimoniale', 'Camera matrimoniale'],
-    ['12-bagno-vasca', 'Il bagno'],
+    ['12-bagno-vasca', 'Bagno con vasca idromassaggio'],
     ['10-cameretta', 'Cameretta con letto estraibile'],
     ['03-soggiorno', 'Soggiorno luminoso'],
     ['07-colazione', 'Pronti per la colazione'],
@@ -246,7 +246,7 @@
     ['05-tv', 'Smart TV'],
     ['09-camera', 'Camera da letto'],
     ['11-cameretta-2', 'Cameretta'],
-    ['13-bagno-doccia', 'Doccia e lavatrice'],
+    ['13-bagno-doccia', 'Bagno con doccia e lavatrice'],
     ['14-cortesia', 'Set di cortesia e asciugacapelli'],
     ['15-dondolo', 'Il dondolo in terrazza'],
     ['16-vista', 'Vista dal balcone']
