@@ -12,7 +12,8 @@
   FRAMES.push(144);
 
   const set = (innerWidth / innerHeight) < 1 ? 'm' : 'd';
-  const src = i => `${BASE}frames/${set}/${String(i).padStart(3, '0')}.webp`;
+  // ?v=2 sull'ultimo fotogramma: ricolorato al tramonto, forza il nuovo download oltre la cache di 30 giorni
+  const src = i => `${BASE}frames/${set}/${String(i).padStart(3, '0')}.webp${i === 144 ? '?v=2' : ''}`;
   // punto dell'aereo nel primo fotogramma (coordinate normalizzate)
   const PLANE = set === 'd' ? { x: 0.48, y: 0.37 } : { x: 0.45, y: 0.37 };
 
