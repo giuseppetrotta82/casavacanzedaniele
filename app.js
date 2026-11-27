@@ -13,8 +13,9 @@
 
   const set = (innerWidth / innerHeight) < 1 ? 'm' : 'd';
   // ?v=2 sull'ultimo fotogramma: ricolorato al tramonto, forza il nuovo download oltre la cache di 30 giorni
-  const src = i => `${BASE}frames/${set}/${String(i).padStart(3, '0')}.webp${i === 144 ? '?v=2' : ''}`;
+  const src = i => `${BASE}frames/${set}/${String(i).padStart(3, '0')}.webp${i === 144 ? '?v=3' : ''}`;
   // punto dell'aereo nel primo fotogramma (coordinate normalizzate)
+  const PALMA = set === 'd' ? 0.66 : 0.58;   // altezza della palma nell'ultimo fotogramma (frazione dell'immagine)
   const PLANE = set === 'd' ? { x: 0.48, y: 0.37 } : { x: 0.45, y: 0.37 };
 
   const imgs = new Map();
@@ -61,8 +62,8 @@
     const cw = canvas.width, ch = canvas.height;
     const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-    // 'basso': inquadra il bordo inferiore dell'immagine (visuale abbassata) senza scoprire lo sfondo
-    if (fy === 'basso') fy = 1 - ch / (2 * z * dh);
+    // {centro: v}: porta il punto v dell'immagine al centro dello schermo, senza mai scoprire lo sfondo
+    if (typeof fy === 'object') { const m = ch / (2 * z * dh); fy = Math.min(Math.max(fy.centro, m), 1 - m); }
     ctx.save();
     ctx.globalAlpha = alpha;
     ctx.translate(cw / 2, ch / 2);
@@ -120,11 +121,10 @@
       // dissolvenza Paestum -> terrazza, poi zoom lento sulla casa
       const t = ease(seg(p, ...S5));
       // visuale abbassata: più terrazza e arredi, meno facciata sopra
-      // sul telefono l'immagine è già ritagliata ai lati: zoom minore
-      const z0 = set === 'd' ? 1.32 : 1.16;
-      const z = z0 - 0.1 * ease(seg(p, S5[0], S6[1]));
+      // la foto è allungata in basso (riflesso scuro del pavimento): la palma sale al centro dello schermo
+      const z = 1.12 - 0.1 * ease(seg(p, S5[0], S6[1]));
       if (t < 1) drawImg(nearest(124), 1, 1 + 0.1 * t);
-      drawImg(nearest(144), t, z, 0.5, 'basso');
+      drawImg(nearest(144), t, z, 0.5, { centro: PALMA });
       lastFrame = 144;
     }
 
