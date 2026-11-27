@@ -61,6 +61,8 @@
     const cw = canvas.width, ch = canvas.height;
     const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+    // 'basso': inquadra il bordo inferiore dell'immagine (visuale abbassata) senza scoprire lo sfondo
+    if (fy === 'basso') fy = 1 - ch / (2 * z * dh);
     ctx.save();
     ctx.globalAlpha = alpha;
     ctx.translate(cw / 2, ch / 2);
@@ -117,9 +119,12 @@
     } else {
       // dissolvenza Paestum -> terrazza, poi zoom lento sulla casa
       const t = ease(seg(p, ...S5));
-      const z = 1.14 - 0.14 * ease(seg(p, S5[0], S6[1]));
+      // visuale abbassata: più terrazza e arredi, meno facciata sopra
+      // sul telefono l'immagine è già ritagliata ai lati: zoom minore
+      const z0 = set === 'd' ? 1.32 : 1.16;
+      const z = z0 - 0.1 * ease(seg(p, S5[0], S6[1]));
       if (t < 1) drawImg(nearest(124), 1, 1 + 0.1 * t);
-      drawImg(nearest(144), t, z);
+      drawImg(nearest(144), t, z, 0.5, 'basso');
       lastFrame = 144;
     }
 
@@ -127,7 +132,9 @@
     caps.forEach(c => {
       const a = +c.dataset.in * TS, b = Math.min(+c.dataset.out * TS, 1.01), fade = 0.025;
       const bEnd = c.classList.contains('cap-end') ? 1.01 : b;
-      const o = clamp(Math.min(a === 0 ? 1 : (p - a) / fade, (bEnd - p) / fade));
+      // la didascalia finale non sfuma mai in uscita (prima a fine corsa restava al 40%)
+      const fadeOut = c.classList.contains('cap-end') ? 1 : (bEnd - p) / fade;
+      const o = clamp(Math.min(a === 0 ? 1 : (p - a) / fade, fadeOut));
       c.style.opacity = o;
       const y = (1 - o) * 24;
       if (c.classList.contains('cap-hero')) c.style.transform = `translate(-50%, ${-(1 - o) * 30}px)`;
